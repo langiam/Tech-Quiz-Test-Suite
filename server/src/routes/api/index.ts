@@ -1,7 +1,8 @@
-import express from 'express';
-const router = express.Router();
-import questionRoutes from './questionRoutes.js';
+import { Router } from 'express';
+import questionRoutes from './questionRoutes';
 
-router.use('/questions', questionRoutes);
+const router = Router();
+
+router.use('/', questionRoutes); // handles /questions and /random
 
 export default router;
