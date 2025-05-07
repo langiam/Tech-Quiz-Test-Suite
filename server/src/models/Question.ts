@@ -1,6 +1,6 @@
 import { Schema, model, type Document } from 'mongoose';
 
-interface IAnswer extends Document {
+interface IAnswer {
   text: string;
   isCorrect: boolean;
 }
@@ -10,15 +10,15 @@ interface IQuestion extends Document {
   answers: IAnswer[];
 }
 
-const QuestionSchema = new Schema<IQuestion>({
-  question: { type: String, required: true },
-  answers: [
-    {
-      text: { type: String, required: true },
-      isCorrect: { type: Boolean, required: true }
-    }
-  ]
+const answerSchema = new Schema<IAnswer>({
+  text: { type: String, required: true },
+  isCorrect: { type: Boolean, required: true }
 });
 
-const Question = model<IQuestion>('Question', QuestionSchema);
+const questionSchema = new Schema<IQuestion>({
+  question: { type: String, required: true },
+  answers: { type: [answerSchema], required: true }
+});
+
+const Question = model<IQuestion>('Question', questionSchema);
 export { IQuestion, Question };

@@ -1,53 +1,93 @@
 [
     {
       "question": "Which HTML element is used to define important text?",
-      "options": ["<important>", "<em>", "<strong>", "<highlight>"],
-      "correctAnswer": "<strong>"
+      "answers": [
+        { "text": "<important>", "isCorrect": false },
+        { "text": "<em>", "isCorrect": false },
+        { "text": "<strong>", "isCorrect": true },
+        { "text": "<highlight>", "isCorrect": false }
+      ]
     },
     {
       "question": "Which CSS property controls the text size?",
-      "options": ["font-style", "text-align", "font-size", "line-height"],
-      "correctAnswer": "font-size"
+      "answers": [
+        { "text": "font-style", "isCorrect": false },
+        { "text": "text-align", "isCorrect": false },
+        { "text": "font-size", "isCorrect": true },
+        { "text": "line-height", "isCorrect": false }
+      ]
     },
     {
       "question": "What is the correct syntax to reference an external JavaScript file?",
-      "options": ["<script src=\"script.js\">", "<javascript href=\"script.js\">", "<js link=\"script.js\">", "<script link=\"script.js\">"],
-      "correctAnswer": "<script src=\"script.js\">"
+      "answers": [
+        { "text": "<script src=\"script.js\">", "isCorrect": true },
+        { "text": "<javascript href=\"script.js\">", "isCorrect": false },
+        { "text": "<js link=\"script.js\">", "isCorrect": false },
+        { "text": "<script link=\"script.js\">", "isCorrect": false }
+      ]
     },
     {
       "question": "Which array method removes the last element in JavaScript?",
-      "options": ["shift()", "pop()", "splice()", "remove()"],
-      "correctAnswer": "pop()"
+      "answers": [
+        { "text": "shift()", "isCorrect": false },
+        { "text": "pop()", "isCorrect": true },
+        { "text": "splice()", "isCorrect": false },
+        { "text": "remove()", "isCorrect": false }
+      ]
     },
     {
       "question": "Which Node.js module is used to create a server?",
-      "options": ["url", "express", "http", "fs"],
-      "correctAnswer": "http"
+      "answers": [
+        { "text": "url", "isCorrect": false },
+        { "text": "express", "isCorrect": false },
+        { "text": "http", "isCorrect": true },
+        { "text": "fs", "isCorrect": false }
+      ]
     },
     {
       "question": "In SQL, what keyword is used to retrieve data from a table?",
-      "options": ["GET", "FETCH", "SELECT", "SHOW"],
-      "correctAnswer": "SELECT"
+      "answers": [
+        { "text": "GET", "isCorrect": false },
+        { "text": "FETCH", "isCorrect": false },
+        { "text": "SELECT", "isCorrect": true },
+        { "text": "SHOW", "isCorrect": false }
+      ]
     },
     {
       "question": "What does the acronym CRUD stand for in database operations?",
-      "options": ["Create, Read, Update, Destroy", "Connect, Retrieve, Update, Delete", "Create, Read, Update, Delete", "Compute, Read, Upload, Deploy"],
-      "correctAnswer": "Create, Read, Update, Delete"
+      "answers": [
+        { "text": "Create, Read, Update, Destroy", "isCorrect": false },
+        { "text": "Connect, Retrieve, Update, Delete", "isCorrect": false },
+        { "text": "Create, Read, Update, Delete", "isCorrect": true },
+        { "text": "Compute, Read, Upload, Deploy", "isCorrect": false }
+      ]
     },
     {
       "question": "Which hook is used in React to perform side effects?",
-      "options": ["useEffect()", "useState()", "useMemo()", "useReducer()"],
-      "correctAnswer": "useEffect()"
+      "answers": [
+        { "text": "useEffect()", "isCorrect": true },
+        { "text": "useState()", "isCorrect": false },
+        { "text": "useMemo()", "isCorrect": false },
+        { "text": "useReducer()", "isCorrect": false }
+      ]
     },
     {
       "question": "Which command initializes a new Git repository?",
-      "options": ["git init", "git start", "npm init git", "git install"],
-      "correctAnswer": "git init"
+      "answers": [
+        { "text": "git init", "isCorrect": true },
+        { "text": "git start", "isCorrect": false },
+        { "text": "npm init git", "isCorrect": false },
+        { "text": "git install", "isCorrect": false }
+      ]
     },
     {
       "question": "What is the purpose of useState in a React component?",
-      "options": ["To fetch data", "To manage DOM events", "To create routing", "To add and manage component state"],
-      "correctAnswer": "To add and manage component state"
+      "answers": [
+        { "text": "To fetch data", "isCorrect": false },
+        { "text": "To manage DOM events", "isCorrect": false },
+        { "text": "To create routing", "isCorrect": false },
+        { "text": "To add and manage component state", "isCorrect": true }
+      ]
     }
   ]
   

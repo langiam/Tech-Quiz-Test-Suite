@@ -1,8 +1,6 @@
 import { Router } from 'express';
-import questionRoutes from './questionRoutes';
+import questionRoutes from './questionRoutes.js'; // ✅ must use `.js`!
 
 const router = Router();
-
-router.use('/', questionRoutes); // handles /questions and /random
-
+router.use('/', questionRoutes);
 export default router;
