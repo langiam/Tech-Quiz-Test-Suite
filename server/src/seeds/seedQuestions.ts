@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import { Question } from '../models/Question.js';
 import pythonQuestions from './pythonQuestions.js';
 
-// ✅ Load .env before accessing process.env
 dotenv.config();
 
 const uri = process.env.MONGODB_URI;

@@ -1,19 +1,27 @@
-import db from '../config/connection.js';
-import { Question } from '../models/index.js'
-import cleanDB from './cleanDb.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-import questionData from './pythonQuestions.js' assert{ type: 'json'};
+import { Question } from '../models/Question.js';
+import pythonQuestions from './pythonQuestions.js';
 
-try {
-  await db();
-  await cleanDB();
+const uri = process.env.MONGODB_URI;
 
-  // bulk create each model
-  await Question.insertMany(questionData);
-
-  console.log('Seeding completed successfully!');
-  process.exit(0);
-} catch (error) {
-  console.error('Error seeding database:', error);
-  process.exit(1);
+if (!uri) {
+  throw new Error('❌ MONGODB_URI is not set in .env');
 }
+
+const seed = async () => {
+  try {
+    await mongoose.connect(uri);
+    await Question.deleteMany();
+    await Question.insertMany(pythonQuestions);
+    console.log('✅ Seeded Python questions!');
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Seeding failed:', err);
+    process.exit(1);
+  }
+};
+
+seed();

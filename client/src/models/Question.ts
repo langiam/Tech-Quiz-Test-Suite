@@ -1,6 +1,6 @@
-import type { Answer } from './Answer';
+import type { Answer } from './Answer.js';
 
-export interface Question {
+export interface IQuestion {
   _id: string;
   question: string;
   answers: Answer[];

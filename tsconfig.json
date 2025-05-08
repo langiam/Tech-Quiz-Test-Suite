@@ -5,16 +5,13 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-
     "allowJs": true,
     "checkJs": true,
-
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -22,14 +19,20 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
     "noImplicitOverride": true,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "composite": true,
+    "outDir": "dist"
   },
-  "include": ["server/**/*", "client/**/*", "cypress.config.ts", "shared/**/*"],
+  "include": [
+    "server/**/*",
+    "client/**/*",
+    "cypress.config.ts",
+    "shared/**/*"
+  ],
   "exclude": ["node_modules", "dist"],
   "references": [
     { "path": "./server" },
     { "path": "./client" },
-    { "path": "./cypress" },
-    { "path": "./shared" }
+    { "path": "./cypress" }
   ]
 }
