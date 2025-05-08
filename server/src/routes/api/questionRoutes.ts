@@ -1,8 +1,8 @@
 import express from 'express';
-import { getRandomQuestions } from '../../controllers/questionController.js'; // ✅ make sure this is correct
+import { getRandomQuestions } from '../../controllers/questionController.js';
 
 const router = express.Router();
 
-router.get('/questions', getRandomQuestions);
+router.get('/random', getRandomQuestions);
 
 export default router;

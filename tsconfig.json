@@ -26,9 +26,10 @@
   "include": [
     "server/**/*",
     "client/**/*",
+    "cypress/**/*",  
     "cypress.config.ts",
     "shared/**/*"
-  ],
+    ],
   "exclude": ["node_modules", "dist"],
   "references": [
     { "path": "./server" },

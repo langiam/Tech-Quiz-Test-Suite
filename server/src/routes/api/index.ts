@@ -2,5 +2,8 @@ import { Router } from 'express';
 import questionRoutes from './questionRoutes.js';
 
 const router = Router();
-router.use('/', questionRoutes);
+
+// Fix: mount under /questions so you get /api/questions/random
+router.use('/questions', questionRoutes);
+
 export default router;
