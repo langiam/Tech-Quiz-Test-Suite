@@ -1,7 +1,8 @@
-import type { Answer } from './Answer';
-
-export interface Question {
+export interface IQuestion {
   _id: string;
   question: string;
-  answers: Answer[];
+  answers: {
+    text: string;
+    isCorrect: boolean;
+  }[];
 }

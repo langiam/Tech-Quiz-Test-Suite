@@ -1,96 +1,81 @@
-import { useState, } from 'react';
-import type { Question } from '../models/Question.js';
-import { getQuestions } from '../services/questionApi.js';
+import React, { useState, useEffect } from 'react';
+import { getQuestions } from '../services/questionApi.ts';
+import type { IQuestion } from '../models/Question.ts';
 
-const Quiz = () => {
-  const [questions, setQuestions] = useState<Question[]>([]);
+const Quiz: React.FC = () => {
+  const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const getRandomQuestions = async () => {
-    try {
-      const questions = await getQuestions();
-
-      if (!questions) {
-        throw new Error('something went wrong!');
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const data = await getQuestions();
+        setQuestions(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to load quiz questions:', error);
       }
-
-      setQuestions(questions);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    };
+    fetchQuestions();
+  }, []);
 
   const handleAnswerClick = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1);
     }
 
-    const nextQuestionIndex = currentQuestionIndex + 1;
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
+    const nextIndex = currentQuestionIndex + 1;
+    if (nextIndex < questions.length) {
+      setCurrentQuestionIndex(nextIndex);
     } else {
-      setQuizCompleted(true);
+      setQuizFinished(true);
     }
   };
 
-  const handleStartQuiz = async () => {
-    await getRandomQuestions();
-    setQuizStarted(true);
-    setQuizCompleted(false);
-    setScore(0);
+  const handleRestart = () => {
     setCurrentQuestionIndex(0);
+    setScore(0);
+    setQuizStarted(false);
+    setQuizFinished(false);
   };
 
-  if (!quizStarted) {
+  if (loading) return <div>Loading...</div>;
+  if (!quizStarted)
+    return <button onClick={() => setQuizStarted(true)}>Start Quiz</button>;
+
+  if (quizFinished)
     return (
-      <div className="p-4 text-center">
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
-          Start Quiz
-        </button>
+      <div>
+        <h2>Your score is {score} / {questions.length}</h2>
+        <button onClick={handleRestart}>Start New Quiz</button>
       </div>
     );
-  }
 
-  if (quizCompleted) {
-    return (
-      <div className="card p-4 text-center">
-        <h2>Quiz Completed</h2>
-        <div className="alert alert-success">
-          Your score: {score}/{questions.length}
-        </div>
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
-          Take New Quiz
-        </button>
-      </div>
-    );
-  }
-
-  if (questions.length === 0) {
-    return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
-
-  const currentQuestion = questions[currentQuestionIndex];
+const currentQuestion = questions[currentQuestionIndex];
+if (!currentQuestion) return <div>No questions available.</div>;
 
   return (
-    <div className='card p-4'>
-      <h2>{currentQuestion.question}</h2>
-      <div className="mt-3">
-      {currentQuestion.answers.map((answer, index) => (
-        <div key={index} className="d-flex align-items-center mb-2">
-          <button className="btn btn-primary" onClick={() => handleAnswerClick(answer.isCorrect)}>{index + 1}</button>
-          <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">{answer.text}</div>
-        </div>
-      ))}
-      </div>
+    <div>
+      <h4 className="question">{currentQuestion.question}</h4>
+      {currentQuestion.answers.map(
+        (answer: { text: string; isCorrect: boolean }, index: number) => (
+          <div key={index} className="d-flex align-items-center mb-2">
+            <button
+              className="btn btn-primary"
+              onClick={() => handleAnswerClick(answer.isCorrect)}
+            >
+              {index + 1}
+            </button>
+            <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">
+              {answer.text}
+            </div>
+          </div>
+        )
+      )}
     </div>
   );
 };
