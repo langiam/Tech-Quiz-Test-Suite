@@ -14,12 +14,13 @@
     "build": "cd server && npm run build",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
-    "test": "cypress open"   
+    "test": "cypress open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.15.17",
     "@types/react": "^18.3.3",
     "@vitejs/plugin-react": "^4.3.1",
     "concurrently": "^8.2.2",
@@ -31,5 +32,8 @@
     "typescript": "^5.5.3",
     "vitest": "^3.1.3",
     "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "vite": "^6.3.5"
   }
 }
